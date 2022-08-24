@@ -26,12 +26,6 @@ resources:
     cpu: 50m
     memory: 64Mi
 
-podSecurityContext:
-  fsGroup: 65532
-  runAsNonRoot: true
-  seccompProfile:
-    type: RuntimeDefault
-
 securityContext:
   capabilities:
     drop:
