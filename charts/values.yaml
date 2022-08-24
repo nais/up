@@ -30,7 +30,7 @@ podSecurityContext:
   seccompProfile:
     type: RuntimeDefault
 
-securityContext:
+containerSecurityContext:
   capabilities:
     drop:
       - ALL
