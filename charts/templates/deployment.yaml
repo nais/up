@@ -18,7 +18,14 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           securityContext:
-            { { - toYaml .Values.securityContext | nindent 12 } }
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            seccompProfile:
+              type: RuntimeDefault
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
