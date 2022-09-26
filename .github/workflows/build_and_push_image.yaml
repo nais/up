@@ -62,10 +62,12 @@ jobs:
     needs: ["build_and_push"]
     runs-on: fasit-deploy
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: read sha
         id: sha
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       - uses: nais/fasit-deploy@main
         with:
-          json: '{"image": {"tag": "sha-${{ steps.vars.outputs.sha_short }}"}}'
+          json: '{"image": {"tag": "sha-${{ steps.sha.outputs.sha_short }}"}}'
           feature_name: up
