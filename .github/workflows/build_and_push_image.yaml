@@ -59,6 +59,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
   rollout:
+    needs: ["build_and_push"]
     runs-on: fasit-deploy
     steps:
       - name: read sha
