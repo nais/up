@@ -25,6 +25,7 @@ func init() {
 }
 
 func main() {
+	time.Sleep(10 * time.Minute)
 	started := time.Now()
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, syscall.SIGTERM, syscall.SIGINT)

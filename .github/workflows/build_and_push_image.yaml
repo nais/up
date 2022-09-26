@@ -60,7 +60,6 @@ jobs:
           cache-to: type=gha,mode=max
   rollout:
     permissions:
-      contents: "read"
       id-token: "write"
     needs: ["build_and_push"]
     runs-on: fasit-deploy
