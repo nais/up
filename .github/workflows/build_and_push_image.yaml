@@ -65,7 +65,7 @@ jobs:
       - name: read sha
         id: sha
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      - uses: nais/deploy/actions/deploy@main
+      - uses: nais/fasit-deploy@main
         with:
           json: '{"image": {"tag": "sha-${{ steps.vars.outputs.sha_short }}"}}'
           feature_name: up
