@@ -1,6 +1,8 @@
 name: Build and deploy image
 on:
   push:
+    branches:
+      - main
     paths-ignore:
       - "charts/**"
 
@@ -56,3 +58,10 @@ jobs:
           labels: ${{ steps.metadata.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - name: read sha
+        id: sha
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - uses: nais/deploy/actions/deploy@b20a503
+        with:
+          json: '{"image": {"tag": "sha-${{ steps.vars.outputs.sha_short }}"}}'
+          feature_name: up
