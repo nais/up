@@ -14,7 +14,7 @@ jobs:
       - run: go version
       - run: go test -cover -tags integration_test ./...
   build_and_push_vault-up:
-    if: ${{ github.ref == 'refs/heads/push_to_google' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: [test]
     permissions:
       contents: "read"
