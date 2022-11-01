@@ -2,6 +2,7 @@ name: build and push
 on: [push]
 jobs:
   build:
+    if: ${{ github.ref == 'refs/heads/main' }}
     name: build
     runs-on: ubuntu-20.04
     steps:
