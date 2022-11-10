@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 	"time"
 )
@@ -31,6 +32,8 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		counter := r.URL.Query().Get("counter")
+		counter = strings.Replace(counter, "\n", "", -1)
+		counter = strings.Replace(counter, "\r", "", -1)
 		if counter != "" {
 			fmt.Printf("{\"message\": \"got request with counter: %s\", \"counter\": \"%s\"}\n", counter, counter)
 		}
